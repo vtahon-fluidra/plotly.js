@@ -1,5 +1,5 @@
 /**
-* plotly.js v2.24.2
+* plotly.js v2.26.0
 * Copyright 2012-2023, Plotly, Inc.
 * All rights reserved.
 * Licensed under the MIT license
@@ -17,18 +17,18 @@
 return /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 506:
+/***/ 579:
 /***/ (function(__unused_webpack_module, exports) {
 
 "use strict";
 
 
 // package version injected by `npm run preprocess`
-exports.version = '2.24.2';
+exports.version = '2.26.0';
 
 /***/ }),
 
-/***/ 679:
+/***/ 39:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 exports.world_110m = __webpack_require__(110)
@@ -201,8 +201,8 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 
-var saneTopojson = __webpack_require__(679);
-exports.version = __webpack_require__(506).version;
+var saneTopojson = __webpack_require__(39);
+exports.version = __webpack_require__(579).version;
 exports.topojson = saneTopojson;
 }();
 /******/ 	return __webpack_exports__;
