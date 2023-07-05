@@ -3330,6 +3330,19 @@ describe('Test axes', function() {
             });
         });
 
+        it('supports elapsed time format on date axes', function() {
+            var textOut = mockCalc({
+                type: 'date',
+                isElapsed: true,
+                tickmode: 'auto',
+                range: [0, 10000],
+                nticks: 10,
+                dtick: 100
+            });
+
+            expect(textOut).toEqual(['00:00:00:000', '00:00:02:000', '00:00:04:000', '00:00:06:000', '00:00:08:000', '00:00:10:000']);
+        });
+
         it('provides a new date suffix whenever the suffix changes', function() {
             var ax = {
                 type: 'date',

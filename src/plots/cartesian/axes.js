@@ -1737,10 +1737,17 @@ function tickTextObj(ax, x, text) {
 }
 
 function formatElapsed(out) {
-    var nbMilli = out.x % 1000;
-    var nbSec = Math.floor(out.x / 1000) % 60;
-    var nbMinutes = Math.floor(out.x / (60 * 1000)) % 60;
-    var nbHours = Math.floor(out.x / (60 * 60 * 1000));
+    function formatWithNDigit(numberAsString, numberOfMinChar) {
+        if(numberAsString.length >= numberOfMinChar) return numberAsString;
+        return (Array(numberOfMinChar).join('0') + numberAsString).slice(-numberOfMinChar);
+    }
+
+    // For some reason, Plotly starts with 1 hour
+    var startAtHourZero = out.x - 3600000;
+    var nbMilli = formatWithNDigit(startAtHourZero % 1000, 3);
+    var nbSec = formatWithNDigit(Math.floor(startAtHourZero / 1000) % 60, 2);
+    var nbMinutes = formatWithNDigit(Math.floor(startAtHourZero / (60 * 1000)) % 60, 2);
+    var nbHours = formatWithNDigit(Math.floor(startAtHourZero / (60 * 60 * 1000)), 2);
 
     out.text = nbHours + ':' + nbMinutes + ':' + nbSec + ':' + nbMilli;
 }
