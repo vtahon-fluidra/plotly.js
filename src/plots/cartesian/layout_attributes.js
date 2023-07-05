@@ -258,6 +258,11 @@ module.exports = {
             'the axis in question.'
         ].join(' ')
     },
+    isElapsed: {
+        valType: 'boolean',
+        editType: 'calc',
+        description: ['If type is date, modifies the axe date format to elapsed time']
+    },
     autotypenumbers: {
         valType: 'enumerated',
         values: ['convert types', 'strict'],

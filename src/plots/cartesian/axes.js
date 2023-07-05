@@ -1614,6 +1614,7 @@ axes.tickText = function(ax, x, hover, noSuffixPrefix) {
     var arrayMode = ax.tickmode === 'array';
     var extraPrecision = hover || arrayMode;
     var axType = ax.type;
+    var axIsElapsed = ax.isElapsed;
     // TODO multicategory, if we allow ticktext / tickvals
     var tickVal2l = axType === 'category' ? ax.d2l_noadd : ax.d2l;
     var i;
@@ -1647,7 +1648,8 @@ axes.tickText = function(ax, x, hover, noSuffixPrefix) {
         'never' :
         ax.exponentformat !== 'none' && isHidden(ax.showexponent) ? 'hide' : '';
 
-    if(axType === 'date') formatDate(ax, out, hover, extraPrecision);
+    if(axType === 'date' && !axIsElapsed) formatDate(ax, out, hover, extraPrecision);
+    else if(axType === 'date') formatElapsed(out);
     else if(axType === 'log') formatLog(ax, out, hover, extraPrecision, hideexp);
     else if(axType === 'category') formatCategory(ax, out);
     else if(axType === 'multicategory') formatMultiCategory(ax, out, hover);
@@ -1732,6 +1734,15 @@ function tickTextObj(ax, x, text) {
         font: tf.family,
         fontColor: tf.color
     };
+}
+
+function formatElapsed(out) {
+    var nbMilli = out.x % 1000;
+    var nbSec = Math.floor(out.x / 1000) % 60;
+    var nbMinutes = Math.floor(out.x / (60 * 1000)) % 60;
+    var nbHours = Math.floor(out.x / (60 * 60 * 1000));
+
+    out.text = nbHours + ':' + nbMinutes + ':' + nbSec + ':' + nbMilli;
 }
 
 function formatDate(ax, out, hover, extraPrecision) {
