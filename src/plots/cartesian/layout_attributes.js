@@ -261,7 +261,7 @@ module.exports = {
     isElapsed: {
         valType: 'boolean',
         editType: 'calc',
-        description: ['If type is date, modifies the axe date format to elapsed time']
+        description: 'If type is date, modifies the axe date format to elapsed time'
     },
     autotypenumbers: {
         valType: 'enumerated',

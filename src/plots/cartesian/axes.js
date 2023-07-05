@@ -1614,7 +1614,7 @@ axes.tickText = function(ax, x, hover, noSuffixPrefix) {
     var arrayMode = ax.tickmode === 'array';
     var extraPrecision = hover || arrayMode;
     var axType = ax.type;
-    var axIsElapsed = ax.isElapsed;
+    var axIsElapsed = (ax.isElapsed || ax._input.isElapsed);
     // TODO multicategory, if we allow ticktext / tickvals
     var tickVal2l = axType === 'category' ? ax.d2l_noadd : ax.d2l;
     var i;
@@ -1648,6 +1648,8 @@ axes.tickText = function(ax, x, hover, noSuffixPrefix) {
         'never' :
         ax.exponentformat !== 'none' && isHidden(ax.showexponent) ? 'hide' : '';
 
+    console.log(axIsElapsed)
+    console.log(ax)
     if(axType === 'date' && !axIsElapsed) formatDate(ax, out, hover, extraPrecision);
     else if(axType === 'date') formatElapsed(out);
     else if(axType === 'log') formatLog(ax, out, hover, extraPrecision, hideexp);

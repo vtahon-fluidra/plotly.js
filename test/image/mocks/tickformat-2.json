@@ -1,0 +1,18 @@
+{
+    "data": [],
+    "layout": {
+        "title": {"text": "tickformat"},
+        "xaxis": {
+            "type": "date",
+            "isElapsed": true,
+            "tickmode": "auto",
+            "range": [0, 14000],
+            "tick0": 0,
+            "nticks": 10,
+            "dtick": 100
+        },
+        "yaxis": {
+            "type": "linear"
+        }
+    }
+}
